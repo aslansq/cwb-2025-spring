@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+
+    <style>
+        #example {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <p id="example">paragraph text 1</p>
+   
+    <script>
+        let name1 = "#example";
+
+        (document.getElementById("example")).innerText = "test";
+        document.querySelector(name1).innerText = "test 3";
+
+        let variable = 1;
+        console.log(variable)
+
+        variable = "text 4";
+
+        (document.getElementById("example")).innerText = variable;
+
+        main_scope:{
+
+            let var1 = 1;
+            first_scope:{
+                var var4 = 1;
+                let var2 = 2;
+            
+                console.log(var1)
+            }
+
+            break main_scope;
+
+            scope_second:{
+                let var3 = 3;
+                console.log(var2)    
+            }
+        }
+
+        console.log("here")
+
+
+        let object1 = {
+            var1: "String 1",
+            var2: 2452,
+            var3: true,
+            var4: 0x52,
+            var5: false,
+            var5: {
+                a: 1, b: 2, 
+                var1: "string 2"
+            },
+            var7: String("123"),
+            var70: new String("124"),
+            var8: 'c',
+            var9: '',
+            var10: null,
+            var11: undefined,
+            var12: NaN,
+            var13: Number(102),
+         
+            var14: new Number(103),
+
+            1: 1,
+            2: 2,
+            "3": 3,
+            "var15": 4
+        }
+        console.log("A:", object1['var1'] == object1.var1, object1.var15)
+        console.log("B:", object1[1], object1["3"] == object1[3])
+        console.log("============================")
+        console.log(String("TEXT 1").toLowerCase())
+        console.log(new String("TEXT 2").toLowerCase())
+        console.log(("TEXT 3").toLowerCase())
+        console.log("============================")
+
+        let value1 = 1;
+        let value2 = 1;
+        function method1(attr1, attr2){
+            attr1 = 2;
+            attr2 = 2;
+        }
+        method1(value1, value2);
+        console.log(value1, value2)
+
+        function method2(attr1){
+            attr1.var1 = "overwritten";
+            attr1.var2 = "overwritten";
+        }
+        method2(object1);
+        console.log(object1.var1, object1.var2)
+
+
+        function method3(){        
+            console.log("value2:", value2)
+            return 10 + value2
+        }
+        function method4(...attr){ 
+        }
+        console.log({method3: method3()})
+        console.log(method3)
+        console.log(method3())
+
+        let arr1 = [ "string 1", 1234, 2.42, 'c', true ]
+
+        arr1[0] = 123;
+        arr1.push("string 2");        
+        console.log(arr1.length)
+
+
+        function filter(arr, callback){
+            let outArr = [];
+            for(let i = 0; i < arr.length; i++){
+                if(callback(arr[i]) === true){
+                    outArr.push(arr[i]);
+                }
+            }
+            return outArr;
+        }
+
+        let ret = arr1.filter(function(e){
+
+            return typeof e == "number"
+        })
+
+        let ret2 = filter(arr1, function(e){
+            return typeof e == "number"
+        })
+
+        console.log(ret2);
+        console.log("============================")
+
+        let method3_repl = () => {
+            console.log("value2:", value2)
+            return 10 + value2
+        }
+        console.log("method3_repl: " + method3_repl());
+
+        let method2_repl = (attr1, attr2) =>{
+            attr1.var1 = "overwritten 2";
+            attr1.var2 = "overwritten 2";
+        }
+        method2_repl(object1);
+        console.log(object1.var1, object1.var2)
+
+
+        let method5 = function() {
+            this.test = 1;
+            let obj1 = {
+                var1: 1,
+                var2: 2,
+                method1: ()=>{
+                    console.log("your method");
+                    this.test = 2;
+                },
+                method2: function(){
+                    this.test = 2;
+                    console.log(2001);
+
+                },
+                method3(){
+                    console.log(2003)
+                }
+            }
+            obj1.method2();
+            obj1.method1();
+            console.log(this.test);
+
+            return obj1
+        }
+
+
+        console.log(method5().var1)
+        method5().method1();
+        method5().method3();
+
+
+    </script>
+    
+</body>
+</html>
