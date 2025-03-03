@@ -12,6 +12,7 @@
    - C) undefined
    - D) Error
 <br />
+
 2. **What's the difference between `let` and `var` when declaring variables?**
    - A) There is no difference
    - B) `let` allows you to declare a variable twice, `var` doesn't
@@ -26,6 +27,7 @@
    - C) document.querySelector("example")
    - D) document.getElement("example")
 <br />
+
 4. **How do you change the text inside a paragraph with id="example"?**
    - A) document.getElementById("example").text = "New text";
    - B) document.getElementById("example").innerHTML = "New text";
@@ -40,6 +42,7 @@
    - C) Array
    - D) Number
 <br />
+
 6. **What will `typeof 42` return?**
    - A) "integer"
    - B) "number"
@@ -59,6 +62,7 @@
    - C) Displays the sum of a and b on the screen
    - D) Creates a variable called "a + b"
 <br />
+
 8. **When calling a function, where do you put the parameters?**
    ```javascript
    function greet(name) {
@@ -84,6 +88,7 @@
    - C) person("name")
    - D) person-name
 <br />
+
 10. **What will be the value of `fruits.length` after this code runs?**
     ```javascript
     let fruits = ["apple", "banana"];
