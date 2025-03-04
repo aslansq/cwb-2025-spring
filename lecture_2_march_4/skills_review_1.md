@@ -1,7 +1,6 @@
-# Skills Review #1
-## Basic JavaScript Concepts
+# Skills Review #1 - Basic JavaScript Concepts
 
-### Programming Fundamentals
+## Programming Fundamentals
 
 1. **What is a variable in programming?**
    - A) A mathematical equation
@@ -31,7 +30,7 @@
    - D) To test their code automatically
 <br />
 
-### Variables and Values
+## Variables and Values
 
 5. **What will be stored in the variable `greeting` after this code runs?**
    ```javascript
@@ -58,7 +57,7 @@
    - D) `let NAME = value;`
 <br />
 
-### HTML and JavaScript Connection
+## HTML and JavaScript Connection
 
 8. **How is JavaScript typically connected to an HTML page?**
    - A) Using a `<javascript>` tag
@@ -74,7 +73,7 @@
    - D) Display Order Module
 <br />
 
-### DOM Basics
+## DOM Basics
 
 10. **How do you select an HTML element with the id="example"?**
     - A) document.findElement("example")
@@ -90,7 +89,7 @@
     - D) Both B and C will work
 <br />
 
-### Data Types
+## Data Types
 
 12. **Which of these is NOT a basic data type in JavaScript?**
     - A) String
@@ -116,7 +115,7 @@
     - D) 52
 <br />
 
-### Functions
+## Functions
 
 15. **What does this function do?**
     ```javascript
@@ -142,7 +141,7 @@
     - D) function("John");
 <br />
 
-### Objects and Arrays
+## Objects and Arrays
 
 17. **How do you access the property "name" in this object?**
     ```javascript
