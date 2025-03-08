@@ -12,6 +12,10 @@
 		border-radius: 25px;
 		overflow: hidden;
 	}
+	.progress-item {
+        display: flex;
+        align-items: center;
+      }
 	.progress-bar-red {
 		width: 70%;
 		height: 30px;
@@ -268,11 +272,11 @@
 			}
 
 			getProgressBar(name, percentage) {
-				let s = `<p>${name}:</p>`;
+				let s = `<div class="progress-item"><p>${name}:</p>`;
 				if(percentage >= this.okPercentage) {
-					s += `<div class="progress-bar-green" style="width: ${percentage}%;">${percentage}%</div>`;
+					s += `<div class="progress-bar-green" style="width: ${percentage}%;">${percentage}%</div></div>`;
 				} else {
-					s += `<div class="progress-bar-red" style="width: ${percentage}%;">${percentage}%</div>`;
+					s += `<div class="progress-bar-red" style="width: ${percentage}%;">${percentage}%</div></div>`;
 				}
 				
 				return s
