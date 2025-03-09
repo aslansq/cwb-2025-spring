@@ -7,33 +7,39 @@
 	<title>Skill Review 1 Analysis</title>
 <style>
 	.progress-container {
-		width: 300px;
+		width: 500px;
 		background-color: #f3f3f3;
-		border-radius: 25px;
+		border-radius: 15px;
 		overflow: hidden;
 	}
 	.progress-item {
-        display: flex;
-        align-items: center;
-      }
+		display: flex;
+		align-items: center;
+	}
+	.progress-bar-text {
+		width: 100px;
+		height: 25px;
+		text-align: center;
+		line-height: 15px;
+	}
 	.progress-bar-red {
 		width: 70%;
-		height: 30px;
+		height: 15px;
 		background-color: red;
 		text-align: center;
-		line-height: 30px;
-		color: white;
+		line-height: 15px;
+		color: red;
 	}
 	.progress-bar-green {
 		width: 70%;
-		height: 30px;
+		height: 15px;
 		background-color: #4caf50;
 		text-align: center;
-		line-height: 30px;
-		color: white;
+		line-height:15px;
+		color: #4caf50;
 	}
 	.log-container {
-		width: 100%;
+		width: 575px;
 		height: 200px;
 		overflow-y: scroll;
 		border: 1px solid #ccc;
@@ -43,9 +49,7 @@
 </head>
 
 <body>
-	<div class="progress-container" id="progress-container-id">
-	</div>
-
+	<div id="visualize-bars"></div>
 	<br>
 
 	<div class="log-container" id="log-container-id"></div>
@@ -189,7 +193,7 @@
 				this.peopleWithoutQuiz = this.getPeopleWithoutQuiz(this.people)
 				this.numOfPeopleSubmitted = this.peopleWQuiz.length
 				this.submitPercentage = this.numOfPeopleSubmitted / this.people.length * 100.0
-				this.progressContainer = document.getElementById('progress-container-id');
+				this.progressContainer = document.getElementById('visualize-bars');
 				this.numOfCorrectAns = this.getNumOfCorrectAns()
 			}
 
@@ -272,11 +276,12 @@
 			}
 
 			getProgressBar(name, percentage) {
-				let s = `<div class="progress-item"><p>${name}:</p>`;
+
+				let s = `<div class="progress-item"><div class="progress-bar-text">${name}:</div>`;
 				if(percentage >= this.okPercentage) {
-					s += `<div class="progress-bar-green" style="width: ${percentage}%;">${percentage}%</div></div>`;
+					s += `<div class="progress-container"><div class="progress-bar-green" style="width: ${percentage}%;">${percentage}%</div></div></div>`;
 				} else {
-					s += `<div class="progress-bar-red" style="width: ${percentage}%;">${percentage}%</div></div>`;
+					s += `<div class="progress-container"><div class="progress-bar-red" style="width: ${percentage}%;">${percentage}%</div></div></div>`;
 				}
 				
 				return s
@@ -284,6 +289,7 @@
 
 			report() {
 				let numOfQ = 0
+				let rates = "Submit Rate: " + this.submitPercentage + "%  "
 
 				this.consoleReport()
 				
@@ -299,9 +305,11 @@
 				for(let i = 0; i < numOfQ; ++i) {
 					let q = 'q' + (i+1)
 					let percentage = this.numOfCorrectAns[q] / this.numOfPeopleSubmitted * 100.0
+					rates += q + ": " + percentage + "%  "
 					this.progressContainer.innerHTML += this.getProgressBar(q, percentage)
 				}
 
+				logger.release(rates)
 			}
 		}
 
