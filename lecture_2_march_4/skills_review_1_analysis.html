@@ -53,46 +53,112 @@
 	<br>
 
 	<div class="log-container" id="log-container-id"></div>
-	<script src="data.js"></script>
 	<script>
-		let fakeQuizData = true
-
-		if(fakeQuizData == true) {
-			quizData = {
-				// copilot magic
-				"correct" : {
-					"q1": "C", "q2": "B", "q3": "C", "q4": "D", "q5": "A",
-					"q6": "B", "q7": "A", "q8": "D", "q9": "A", "q10": "B",
-					"q11": "C", "q12": "D", "q13": "A", "q14": "A", "q15": "C",
-					"q16": "D", "q17": "A", "q18": "B"
+		quizData = {
+			// copilot magic
+			"correct" : {
+					"q1": "B",
+					"q2": "B",
+					"q3": "B",
+					"q4": "B",
+					"q5": "B",
+					"q6": "C",
+					"q7": "C",
+					"q8": "B",
+					"q9": "A",
+					"q10": "B",
+					"q11": "D",
+					"q12": "C",
+					"q13": "B",
+					"q14": "B",
+					"q15": "A",
+					"q16": "B",
+					"q17": "B",
+					"q18": "B"
 				},
-				"Abdul" : {
-					"q1": "A", "q2": "B", "q3": "C", "q4": "D", "q5": "A",
-					"q6": "B", "q7": "C", "q8": "D", "q9": "A", "q10": "B",
-					"q11": "C", "q12": "D", "q13": "A", "q14": "B", "q15": "C",
-					"q16": "D", "q17": "A", "q18": "B"
+			"Abdul" : {
+					"q1": "B",
+					"q2": "B",
+					"q3": "B",
+					"q4": "B",
+					"q5": "B",
+					"q6": "C",
+					"q7": "C",
+					"q8": "B",
+					"q9": "A",
+					"q10": "B",
+					"q11": "D",
+					"q12": "C",
+					"q13": "B",
+					"q14": "B",
+					"q15": "A",
+					"q16": "B",
+					"q17": "B",
+					"q18": "B"
 				},
-				"Aleksi" : {
-					"q1": "C", "q2": "G", "q3": "C", "q4": "D", "q5": "A",
-					"q6": "B", "q7": "E", "q8": "L", "q9": "C", "q10": "B",
-					"q11": "C", "q12": "D", "q13": "A", "q14": "B", "q15": "C",
-					"q16": "D", "q17": "F", "q18": "B"
+			"Aleksi" :{
+					"q1": "B",
+					"q2": "B",
+					"q3": "B",
+					"q4": "B",
+					"q5": "B",
+					"q6": "C",
+					"q7": "C",
+					"q8": "B",
+					"q9": "A",
+					"q10": "C",
+					"q11": "C",
+					"q12": "C",
+					"q13": "B",
+					"q14": "B",
+					"q15": "C",
+					"q16": "B",
+					"q17": "B",
+					"q18": "B"
 				},
-				"Svetlana" : {
-					"q1": "A", "q2": "M", "q3": "C", "q4": "O", "q5": "A",
-					"q6": "B", "q7": "C", "q8": "D", "q9": "A", "q10": "B",
-					"q11": "R", "q12": "D", "q13": "A", "q14": "P", "q15": "C",
-					"q16": "D", "q17": "A", "q18": "B"
+			"Svetlana" :	{
+				"q1": "A",
+				"q2": "B",
+				"q3": "B",
+				"q4": "B",
+				"q5": "A",
+				"q6": "C",
+				"q7": "C",
+				"q8": "B",
+				"q9": "A",
+				"q10": "B",
+				"q11": "D",
+				"q12": "C",
+				"q13": "B",
+				"q14": "D",
+				"q15": "A",
+				"q16": "A",
+				"q17": "B",
+				"q18": "B"
 				},
-				"Azizi" : {
-					"q1": "A", "q2": "S", "q3": "C", "q4": "D", "q5": "A",
-					"q6": "B", "q7": "C", "q8": "T", "q9": "A", "q10": "B",
-					"q11": "C", "q12": "D", "q13": "A", "q14": "K", "q15": "C",
-					"q16": "D", "q17": "A", "q18": "B"
-				},
+			"Zemarai"	: {
+				"q1": "B",
+				"q2": "B",
+				"q3": "B",
+				"q4": "B",
+				"q5": "B",
+				"q6": "C",
+				"q7": "C",
+				"q8": "B",
+				"q9": "A",
+				"q10": "B",
+				"q11": "C",
+				"q12": "C",
+				"q13": "B",
+				"q14": "B",
+				"q15": "C",
+				"q16": "B",
+				"q17": "C",
+				"q18": "B"
 			}
-
 		}
+
+		
 		
 		class Logger {
 			constructor(level) {
@@ -188,7 +254,7 @@
 		class Classroom {
 			constructor() {
 				this.okPercentage = 70
-				this.people = ["Abdul", "Aleksi", "Svetlana", "Azizi"]
+				this.people = ["Abdul", "Aleksi", "Svetlana", "Zemarai", "Noor Mohammed"]
 				this.peopleWQuiz = this.getPeopleWQuiz(this.people)
 				this.peopleWithoutQuiz = this.getPeopleWithoutQuiz(this.people)
 				this.numOfPeopleSubmitted = this.peopleWQuiz.length
