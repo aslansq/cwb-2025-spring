@@ -1,0 +1,317 @@
+<!-- AN HTML Document -->
+ 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Fundamentals</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+        }
+        .output {
+            border: 1px solid #ddd;
+            padding: 10px;
+            margin-top: 10px;
+            background-color: #f9f9f9;
+        }
+        .section {
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eee;
+        }
+    </style>
+</head>
+<body>
+    <h1>JavaScript Fundamentals</h1>
+    
+    <!-- Section 1: DOM Manipulation -->
+    <div class="section">
+        <h2>1. DOM Manipulation</h2>
+        <p id="example">This paragraph will be changed by JavaScript</p>
+        <div class="output" id="output1"></div>
+    </div>
+
+    <!-- Section 2: Variables and Data Types -->
+    <div class="section">
+        <h2>2. Variables and Data Types</h2>
+        <div class="output" id="output2"></div>
+    </div>
+
+    <!-- Section 3: Objects and Properties -->
+    <div class="section">
+        <h2>3. Objects and Properties</h2>
+        <div class="output" id="output3"></div>
+    </div>
+
+    <!-- Section 4: Functions and Parameters -->
+    <div class="section">
+        <h2>4. Functions and Parameters</h2>
+        <div class="output" id="output4"></div>
+    </div>
+
+    <!-- Section 5: Arrays and Methods -->
+    <div class="section">
+        <h2>5. Arrays and Methods</h2>
+        <div class="output" id="output5"></div>
+    </div>
+
+    <!-- Section 6: Scope and 'this' keyword -->
+    <div class="section">
+        <h2>6. Scope and 'this' keyword</h2>
+        <div class="output" id="output6"></div>
+    </div>
+
+    <script>
+        // Helper function to display output in our sections
+        function displayOutput(sectionId, text) {
+            document.getElementById(sectionId).innerHTML += text + "<br>";
+        }
+
+        /***********************************************************
+         * SECTION 1: DOM MANIPULATION
+         ***********************************************************/
+        
+        // Two ways to select elements from the DOM
+        let paragraphById = document.getElementById("example");
+        let paragraphByQuery = document.querySelector("#example");
+        
+        // Changing text content using innerText
+        paragraphById.innerText = "Changed using getElementById";
+        displayOutput("output1", "✓ Changed paragraph text using getElementById");
+        
+        // Using a variable to store a selector
+        let selector = "#example";
+        document.querySelector(selector).innerText = "Changed using querySelector";
+        displayOutput("output1", "✓ Changed paragraph text using querySelector with variable selector");
+        
+        // Using a variable to store the content
+        let newContent = "Changed using a variable for content";
+        paragraphById.innerText = newContent;
+        displayOutput("output1", "✓ Changed paragraph text using a variable for content");
+
+        /***********************************************************
+         * SECTION 2: VARIABLES AND DATA TYPES
+         ***********************************************************/
+        
+        // Variable declarations
+        let stringVar = "This is a string";
+        let numberVar = 42;
+        let booleanVar = true;
+        let nullVar = null;
+        let undefinedVar;
+        
+        // Showing variable types
+        displayOutput("output2", "String: " + stringVar + " (type: " + typeof stringVar + ")");
+        displayOutput("output2", "Number: " + numberVar + " (type: " + typeof numberVar + ")");
+        displayOutput("output2", "Boolean: " + booleanVar + " (type: " + typeof booleanVar + ")");
+        displayOutput("output2", "Null: " + nullVar + " (type: " + typeof nullVar + ")");
+        displayOutput("output2", "Undefined: " + undefinedVar + " (type: " + typeof undefinedVar + ")");
+        
+        // Type conversion
+        let num = 5;
+        let str = "10";
+        displayOutput("output2", "<br>Type conversion examples:");
+        displayOutput("output2", "num + str = " + (num + str) + " (number + string = string)");
+        displayOutput("output2", "str - num = " + (str - num) + " (string - number = number)");
+        
+        // Variable reassignment
+        let variable = 1;
+        displayOutput("output2", "<br>Variable reassignment:");
+        displayOutput("output2", "Initial value: " + variable + " (type: " + typeof variable + ")");
+        
+        variable = "Now I'm text";
+        displayOutput("output2", "After reassignment: " + variable + " (type: " + typeof variable + ")");
+
+        /***********************************************************
+         * SECTION 3: OBJECTS AND PROPERTIES
+         ***********************************************************/
+        
+        // Creating an object with different property types
+        let person = {
+            name: "John",
+            age: 30,
+            isStudent: false,
+            "favorite color": "blue",  // Property name with space requires quotes
+            address: {                 // Nested object
+                city: "New York",
+                zip: "10001"
+            },
+            1: "Numeric key"           // Numeric property name
+        };
+        
+        // Accessing properties with dot notation
+        displayOutput("output3", "Dot notation:");
+        displayOutput("output3", "person.name = " + person.name);
+        displayOutput("output3", "person.age = " + person.age);
+        displayOutput("output3", "person.address.city = " + person.address.city);
+        
+        // Accessing properties with bracket notation
+        displayOutput("output3", "<br>Bracket notation:");
+        displayOutput("output3", 'person["name"] = ' + person["name"]);
+        displayOutput("output3", 'person["favorite color"] = ' + person["favorite color"]);
+        displayOutput("output3", 'person[1] = ' + person[1]);
+        
+        // Using variables with bracket notation
+        let propertyName = "age";
+        displayOutput("output3", "<br>Using a variable with bracket notation:");
+        displayOutput("output3", 'propertyName = "age"');
+        displayOutput("output3", 'person[propertyName] = ' + person[propertyName]);
+
+        /***********************************************************
+         * SECTION 4: FUNCTIONS AND PARAMETERS
+         ***********************************************************/
+        
+        // Function declaration
+        function greet(name) {
+            return "Hello, " + name + "!";
+        }
+        
+        // Function expression
+        let add = function(a, b) {
+            return a + b;
+        };
+        
+        // Arrow function
+        let multiply = (a, b) => a * b;
+        
+        // Using the functions
+        displayOutput("output4", "greet('Sarah') = " + greet('Sarah'));
+        displayOutput("output4", "add(5, 3) = " + add(5, 3));
+        displayOutput("output4", "multiply(4, 2) = " + multiply(4, 2));
+        
+        // Passing primitive values (pass by value)
+        let x = 10;
+        function changePrimitive(val) {
+            val = 20;  // This only changes the local copy
+            return "Inside function: val = " + val;
+        }
+        
+        displayOutput("output4", "<br>Passing primitive values (pass by value):");
+        displayOutput("output4", "Initial x = " + x);
+        displayOutput("output4", changePrimitive(x));
+        displayOutput("output4", "After function call: x = " + x + " (unchanged)");
+        
+        // Passing objects (pass by reference)
+        let user = { name: "Alice" };
+        function changeObject(obj) {
+            obj.name = "Bob";  // This modifies the original object
+            return "Inside function: obj.name = " + obj.name;
+        }
+        
+        displayOutput("output4", "<br>Passing objects (pass by reference):");
+        displayOutput("output4", "Initial user.name = " + user.name);
+        displayOutput("output4", changeObject(user));
+        displayOutput("output4", "After function call: user.name = " + user.name + " (changed)");
+
+        /***********************************************************
+         * SECTION 5: ARRAYS AND METHODS
+         ***********************************************************/
+        
+        // Creating an array
+        let fruits = ["apple", "banana", "orange"];
+        displayOutput("output5", "Original array: " + fruits);
+        displayOutput("output5", "Array length: " + fruits.length);
+        
+        // Accessing elements
+        displayOutput("output5", "First element (index 0): " + fruits[0]);
+        displayOutput("output5", "Last element (index 2): " + fruits[2]);
+        
+        // Modifying elements
+        fruits[0] = "kiwi";
+        displayOutput("output5", "<br>After changing first element: " + fruits);
+        
+        // Adding elements
+        fruits.push("grape");
+        displayOutput("output5", "After push: " + fruits);
+        
+        fruits.unshift("strawberry");
+        displayOutput("output5", "After unshift: " + fruits);
+        
+        // Removing elements
+        let lastFruit = fruits.pop();
+        displayOutput("output5", "<br>Removed with pop: " + lastFruit);
+        displayOutput("output5", "Array after pop: " + fruits);
+        
+        let firstFruit = fruits.shift();
+        displayOutput("output5", "Removed with shift: " + firstFruit);
+        displayOutput("output5", "Array after shift: " + fruits);
+        
+        // Array filtering
+        let numbers = [1, 2, 3, 4, 5, 6];
+        
+        // Using filter method to get even numbers
+        let evenNumbers = numbers.filter(function(num) {
+            return num % 2 === 0;
+        });
+        
+        displayOutput("output5", "<br>Original numbers: " + numbers);
+        displayOutput("output5", "Even numbers using filter: " + evenNumbers);
+        
+        // Custom filter function implementation
+        function customFilter(arr, callback) {
+            let result = [];
+            for (let i = 0; i < arr.length; i++) {
+                if (callback(arr[i]) === true) {
+                    result.push(arr[i]);
+                }
+            }
+            return result;
+        }
+        
+        let oddNumbers = customFilter(numbers, function(num) {
+            return num % 2 !== 0;
+        });
+        
+        displayOutput("output5", "Odd numbers using custom filter: " + oddNumbers);
+
+        /***********************************************************
+         * SECTION 6: SCOPE AND 'THIS' KEYWORD
+         ***********************************************************/
+        
+        // Block scope example
+        displayOutput("output6", "Block scope example:");
+        
+        let outsideVar = "I'm outside";
+        displayOutput("output6", "outsideVar defined: " + outsideVar);
+        
+        {
+            // This is a block
+            let blockVar = "I'm in a block";
+            var functionScopedVar = "I use var";
+            displayOutput("output6", "Inside block: can access outsideVar: " + outsideVar);
+            displayOutput("output6", "Inside block: can access blockVar: " + blockVar);
+        }
+        
+        displayOutput("output6", "Outside block: can still access outsideVar: " + outsideVar);
+        displayOutput("output6", "Outside block: can access functionScopedVar: " + functionScopedVar);
+        // This would cause an error: console.log(blockVar);
+        displayOutput("output6", "Outside block: cannot access blockVar (it's block-scoped)");
+        
+        // 'this' keyword in different contexts
+        displayOutput("output6", "<br>'this' keyword examples:");
+        
+        // Regular function vs arrow function
+        let myObject = {
+            name: "My Object",
+            
+            // Regular function method
+            regularMethod: function() {
+                return "'this' refers to: " + this.name;
+            },
+            
+            // Arrow function method
+            arrowMethod: () => {
+                // 'this' is inherited from the surrounding scope
+                return "'this' refers to: " + (this.name || "window/global object");
+            }
+        };
+        
+        displayOutput("output6", "Regular method: " + myObject.regularMethod());
+        displayOutput("output6", "Arrow method: " + myObject.arrowMethod());
+    </script>
+</body>
+</html>
