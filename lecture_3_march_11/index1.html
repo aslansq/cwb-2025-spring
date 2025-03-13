@@ -1,0 +1,166 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-do-list</title>
+<style>
+    .hidden {
+    display: none;
+
+}
+.highlight {
+    background-color: yellow;
+    font-weight: bold;
+}
+
+    .red-text {
+    color: red;
+    }
+
+</style>
+</head>
+
+<body>
+
+    <div>
+
+        <p>Search</p>
+        <div>
+            <input id="search-input" type="search" placeholder="Search..">
+            <! -- req 2 add highlight mode checkbox here  -->
+            <label>
+                <input type="checkbox" id="highlight-mode"> Highlight Mode
+            </label>
+            
+        </div>
+
+        <p>Todo list app:</p>
+        <div>
+            <input class="task-input" type="text" placeholder="Enter task">
+            <button id="action-add-task" onclick="addTaskButtonOnClicked()">Add</button>
+            <! -- req 1 add highlight button here  -->
+            <button id="highlight-btn">Highlight</button>
+        </div>
+
+        <p>Matching Tasks: <span id="task-counter">0</span></p>
+        <ul id="task-list"></ul>
+
+    </div>
+    
+    <script>
+
+let taskInput = document.querySelector(".task-input");
+let tasklist = document.querySelector("#task-list");
+let searchInput = document.querySelector("#search-input");
+let highlightMode = document.querySelector("#highlight-mode");
+let taskCounter = document.querySelector("#task-counter");
+
+function addTask(taskDescription) {
+    let new_list_item = document.createElement("li");
+    new_list_item.textContent = taskDescription;
+    tasklist.appendChild(new_list_item);
+}
+
+function addTaskButtonOnClicked(){
+    addTask(taskInput.value);
+}
+
+function updateTaskCounter() {
+    let visibleTasks = document.querySelectorAll("#task-list li:not(.hidden)").length;
+    let highlightedMatches = document.querySelectorAll("#task-list .highlight").length;
+    
+    taskCounter.innerText = highlightMode.checked ? highlightedMatches : visibleTasks;
+}
+
+// Fake tasks for testing
+addTask("Breakfast");
+addTask("Drive Towork");
+addTask("Work");
+addTask("Go Home");
+addTask("Eat Dinner");
+addTask("Sleep");
+
+function searchTasks() {
+    let query = searchInput.value.trim().toLowerCase();
+    let tasks = document.querySelectorAll("#task-list li");
+    
+    tasks.forEach(task => {
+        let taskText = task.textContent.toLowerCase();
+        
+        if (taskText.includes(query)) {
+            task.classList.remove("hidden");
+            if (highlightMode.checked) {
+                task.innerHTML = task.textContent.replace(new RegExp(query, "gi"), match => `<span class="highlight">${match}</span>`);
+            } else {
+                task.innerHTML = task.textContent;
+            }
+        } else {
+            task.classList.add("hidden");
+        }
+    });
+
+    updateTaskCounter();
+}
+
+// Event listener for search input
+searchInput.addEventListener("input", searchTasks);
+
+function highlightTasks() {
+    let query = searchInput.value.trim().toLowerCase();
+    let tasks = document.querySelectorAll("#task-list li");
+    let count = 0;
+
+    tasks.forEach(task => {
+        let originalText = task.textContent;
+        let taskText = originalText.toLowerCase();
+
+        if (taskText.includes(query) && query !== "") {
+            task.innerHTML = originalText.replace(new RegExp(query, "gi"), match => `<span class="red-text">${match}</span>`);
+            count++;
+        } else {
+            task.innerHTML = originalText;
+        }
+    });
+
+    taskCounter.innerText = count;
+}
+
+// Event listener for highlight button
+document.querySelector("#highlight-btn").addEventListener("click", highlightTasks);
+
+function filterTasksBySearch() {
+    let query = searchInput.value.trim().toLowerCase();
+    let tasks = document.querySelectorAll("#task-list li");
+    let count = 0;
+
+    tasks.forEach(task => {
+        let taskText = task.textContent.toLowerCase();
+
+        if (taskText.includes(query) && query !== "") {
+            task.style.display = "list-item";
+            count++;
+        } else {
+            task.style.display = "none";
+        }
+    });
+
+    taskCounter.innerText = count;
+}
+
+// Event listener for search input
+searchInput.addEventListener("input", filterTasksBySearch);
+
+highlightMode.addEventListener("change", function() {
+    if (this.checked) {
+        highlightTasks();
+    } else {
+        filterTasksBySearch();
+    }
+});
+
+   </script>
+
+</body>
+</html>
