@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Student Score Calculator</title>1231
+    <title>Student Score Calculator</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -58,7 +58,16 @@
     </div>
 
     <script>
+        function calculateScore() {
+            const grade1 = parseInt(document.getElementById("grade1").value);
+            const grade2 = parseInt(document.getElementById("grade2").value);
+            const grade3 = parseInt(document.getElementById("grade3").value);
 
+            console.log(grade1);
+            const result = grade1 + grade2 + grade3;
+
+            document.getElementById("result").innerHTML = result;
+       }
 
     </script>
 </body>
