@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Student Score Calculator</title>ffhgfhgfhfhg
+    <title>Student Score Calculator</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -44,6 +44,9 @@
             margin-top: 20px;
             font-weight: bold;
         }
+        .radio-group {
+            margin: 10px 0;
+        }
     </style>
 </head>
 <body>
@@ -53,12 +56,20 @@
         <input type="number" id="grade1" min="1" max="5" placeholder="Grade 1">
         <input type="number" id="grade2" min="1" max="5" placeholder="Grade 2">
         <input type="number" id="grade3" min="1" max="5" placeholder="Grade 3">
+        <div class="radio-group">
+            <input type="radio" id="add" name="operation" value="+" checked>
+            <label for="add">Add (+)</label>
+            <input type="radio" id="subtract" name="operation" value="-">
+            <label for="subtract">Subtract (-)</label>
+            <input type="radio" id="multiply" name="operation" value="*">
+            <label for="multiply">Multiply (*)</label>
+        </div>
         <button onclick="calculateScore()">Calculate Score</button>
         <div id="result"></div>
     </div>
 
     <script>
-
+        // Your code here
     </script>
 </body>
 </html>
