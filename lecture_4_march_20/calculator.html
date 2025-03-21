@@ -53,18 +53,46 @@
         <input type="number" id="grade1" min="1" max="5" placeholder="Grade 1">
         <input type="number" id="grade2" min="1" max="5" placeholder="Grade 2">
         <input type="number" id="grade3" min="1" max="5" placeholder="Grade 3">
+        <p>Select operation:</p>
+        <label><input type="radio" name="operation" value="+" checked> Add (+)</label>
+        <label><input type="radio" name="operation" value="-"> Subtract (-)</label>
+        <label><input type="radio" name="operation" value="*"> Multiply (*)</label>
         <button onclick="calculateScore()">Calculate Score</button>
         <div id="result"></div>
     </div>
 
+
+
     <script> 
+        function calculateTotalScore(grade1,grade2, grade3, operation) {
+        if (
+            grade1 < 1 || grade1 > 5 ||
+            grade2 < 1 || grade2 > 5 || 
+            grade3 < 1 || grade3 > 5
+        ){
+            return "Error: Enter grades between 1 and 5.";
+        }
+        
+        let result;
+        if (operation === "+") {
+            result = grade1 + grade2 + grade3;
+        } else if (operation === "-") {
+            result = grade1 - grade2 - grade3;
+        } else if (operation === "*") {
+            result = grade1 * grade2 * grade3;
+        } else {
+            result = "Error: Invalid operation.";
+        }
+        return `Result: ${result}`;
+    }
+
     function calculateScore() {
-        let grade1 = document.getElementById('grade1').value;
-        let grade2 = document.getElementById('grade2').value;   
-        let grade3 = document.getElementById('grade3').value; 
+        let grade1 = parseInt(document.getElementById('grade1').value);
+        let grade2 = parseInt(document.getElementById('grade2').value);   
+        let grade3 = parseInt(document.getElementById('grade3').value); 
         let result = document.getElementById('result');
-        let score = (parseInt(grade1) + parseInt(grade2) + parseInt(grade3))
-        let resultText = score; 
+        let operation = document.querySelector('input[name="operation"]:checked').value;
+        let resultText = calculateTotalScore(grade1, grade2, grade3, operation);
         result.innerHTML = resultText;
     }
     </script>
