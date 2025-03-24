@@ -4,72 +4,51 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Student Score Calculator</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            line-height: 1.6;
-            margin: 0;
-            padding: 20px;
-            background-color: #f4f4f4;
-        }
-        .container {
-            max-width: 600px;
-            margin: auto;
-            background: #fff;
-            padding: 20px;
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
-        }
-        h1 {
-            color: #333;
-            text-align: center;
-        }
-        input[type="number"] {
-            width: 50px;
-            padding: 5px;
-            margin-right: 10px;
-        }
-        button {
-            padding: 10px 15px;
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-        button:hover {
-            background-color: #45a049;
-        }
-        #result {
-            margin-top: 20px;
-            font-weight: bold;
-        }
-        .radio-group {
-            margin: 10px 0;
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="container">
         <h1>Student Score Calculator</h1>
         <p>Enter grades for three subjects (1-5):</p>
-        <input type="number" id="grade1" min="1" max="5" placeholder="Grade 1">
-        <input type="number" id="grade2" min="1" max="5" placeholder="Grade 2">
-        <input type="number" id="grade3" min="1" max="5" placeholder="Grade 3">
-        <div class="radio-group">
-            <input type="radio" id="add" name="operation" value="+" checked>
-            <label for="add">Add (+)</label>
-            <input type="radio" id="subtract" name="operation" value="-">
-            <label for="subtract">Subtract (-)</label>
-            <input type="radio" id="multiply" name="operation" value="*">
-            <label for="multiply">Multiply (*)</label>
-        </div>
-        <button onclick="calculateScore()">Calculate Score</button>
+
+        <label for="grade1">Grade 1:</label>
+        <select id="grade1">
+          <option value="">Select Grade</option>
+          <option value="0">0</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+        </select>
+        
+        <label for="grade2">Grade 2:</label>
+        <select id="grade2">
+          <option value="">Select Grade</option>
+          <option value="0">0</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+        </select>
+        
+        <label for="grade3">Grade 3:</label>
+        <select id="grade3">
+          <option value="">Select Grade</option>
+          <option value="0">0</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+        </select>
+        
+        <button id="calculateBtn">Calculate Score</button>
         <div id="result"></div>
     </div>
 
-    <script>
-        // Your code here
-    </script>
+    
+    <script src="index.js"></script>
 </body>
 </html>
