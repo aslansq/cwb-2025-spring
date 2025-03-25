@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        body {
+            background: #cecece;
+            font-family: sans-serif;
+
+            margin-top: 4rem;
+        }
+        .container {
+            background: #fff;
+            max-height: 80vh;
+            width: 80%;
+            border: 1px solid #000;
+            margin: 0 auto;
+            padding: 2rem 2rem;
+        }
+        input {
+            border: 1px solid #000;
+            outline: none;
+            padding: 4px 2px;
+        }
+        button {
+            background-color: rgb(87, 75, 199);
+            color: white;
+            font-weight: 600;
+            padding: 0.4rem 0.5rem;
+            border-radius: 3px;
+            border: none;
+        }
+        .inputs {            
+            display: flex;
+            gap: 4px;
+            flex-wrap: wrap;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="inputs">
+            <input type="text" placeholder="number 1">
+            <input type="text" placeholder="number 2">
+            <input type="text" placeholder="number 3">    
+        </div>
+
+        <div>
+            <h5>Output:</h5>
+            <div class="output"></div>
+        </div>
+
+        <div>
+            <h5>Operation:</h5>
+
+
+            <label>Sum
+                <input id="op_sum" name="operation" type="radio" checked>
+            </label>
+            <label>Subtract
+                <input type="radio" name="operation" id="op_subtract">
+            </label>
+            <label>Multiply
+                <input type="radio" name="operation" id="op_multiply">
+            </label>
+        </div>
+
+        <div>
+            <h5>Actions:</h5>
+            <button class="action-calculate">Calculate</button>
+            <button class="action-add-input">Add Input</button>
+        </div>
+    </div>
+
+
+    <script>
+
+        function isNotNumber(val){
+            return !(typeof val == "number" && !isNaN(val));
+        }
+        let Operations ={
+            sumAll(elements){
+                let ret = 0;
+                for(let i = 0; i < elements.length; i++){
+                    let val = parseInt(elements[i].value);                    
+                    if(isNotNumber(val)) continue;
+                    ret += val;
+                }
+                return ret;
+            },
+            subtractAll(elements){
+                let ret = 0;
+                for(let i = 0; i < elements.length; i++){
+                    let val = parseInt(elements[i].value);                    
+                    if(isNotNumber(val)) continue;
+                    ret -= val;
+                }
+                return ret;                
+            },
+            multiplyAll(elements){
+                let ret = 1;
+                for(let i = 0; i < elements.length; i++){
+                    let val = parseInt(elements[i].value);                    
+                    if(isNotNumber(val)) continue;
+                    ret *= Number(elements[i].value);
+                }
+                return ret;
+            }
+        }
+
+        let OperationType = {
+            SUM: "Sum",
+            SUBTRACT: "Subtract",
+            MULTIPLY: "Multiply"
+        }
+        function getCurrentOperation(){
+            if( document.getElementById("op_sum").checked ) return OperationType.SUM;
+            if( document.getElementById("op_subtract").checked ) return OperationType.SUBTRACT;
+            if( document.getElementById("op_multiply").checked ) return OperationType.MULTIPLY;
+        }
+     
+
+        function calculate(elm){
+            let elmInputs = document.querySelectorAll(".inputs > input")
+            let ot = getCurrentOperation();
+
+            let outNumber = 0;
+
+            
+            if(ot == OperationType.SUM) outNumber = Operations.sumAll(elmInputs)
+            else if(ot == OperationType.SUBTRACT) outNumber = Operations.subtractAll(elmInputs)
+            else if(ot == OperationType.MULTIPLY) outNumber = Operations.multiplyAll(elmInputs)
+            else throw "No available operation type: "+ ot;
+        
+            let operationChunk = /*html*/`
+                <p> ${ot} RESULT: ${outNumber} </p>
+            `;
+            let comparisonChunk = /*html*/`
+ 
+            `;
+
+            document.querySelector(".output").innerHTML = (operationChunk + comparisonChunk); 
+        }
+
+        let saveFunction;
+        document.querySelector(".action-calculate").addEventListener("click", calculate);
+        document.querySelector(".action-add-input").addEventListener("click", saveFunction = function addInput(){
+
+            let elmInputs = document.querySelectorAll(".inputs > input")
+            let newElm = document.createElement("input");
+            newElm.placeholder = "input "+ (elmInputs.length + 1);
+            
+            document.querySelector(".inputs").appendChild(newElm);
+        });
+
+
+    </script>
+
+    <script>
+
+    if( "test" == ("test" + 1 + " value") ){
+
+    }
+    let x = 2;
+    if( 1 > x < 5 ){
+
+    }
+    if( (1 > x) /* returns 1 or true */ < 5 ){
+
+    }
+
+    if( 1 > x && x < 5 ){
+
+    }
+
+
+    console.log( (1 > x) == false )
+
+    if( !(10 > x) && 10 < x == false ){
+
+    }
+
+    if( !(10 > x && 10 < x) == false ){
+
+    }
+    if( (10 > x && 10 < x) != false ){
+
+    }
+
+    console.log( 
+        (!(10 > x && 10 < x) == false ) == ((10 > x && 10 < x) != false )
+    )
+
+    if( !(10 > x && 10 < x == false) ){
+
+    }
+
+    console.log(
+
+        1 && 1 && 0 == 0,
+        1 && false && 1 == 0,
+        1 && true && 1 == 1,
+
+        (1 && true && 1) == 1,
+
+        ((1 && true && 1) || 1) == 1
+    )
+
+
+    console.log(
+        typeof x == "number", 
+        (typeof x === "number"), 
+    );
+
+    (x = "number");
+    console.log(
+        (x === "number")
+    )
+    let number = 1;
+    (x = number);
+    console.log(
+        (x === "number")
+    
+    )
+
+    let mult = 0;
+
+    mult = mult + 2 + 5;
+    mult += 2 + 5 + 2;
+    mult += 2 + mult + 2 + x;
+
+    let num1 = (2 + mult / 2 + 2 + x);
+
+
+    let numbers = [], strings = [];
+
+    let a = 1, v = 5, xc =2;
+
+    console.log( 1, 5, 2 )
+
+    let coma = (1, "will this get printed", 2);
+    coma = 1, "will this get printed", 2;
+
+    function getLast(){
+        return "this is the last";
+    }
+    coma = 1, getLast(), "will this get printed", getLast();
+
+
+    console.log(coma);
+    console.log( (1, "will this get printed", 2), 2 )
+
+
+    function addNumber(num){
+        numbers.push(num);
+    }
+    function addString(str){
+        strings.push(str);
+    }
+
+    function addType(val, type){
+        if(type == "number" && typeof val == "number"){
+            console.log("number added: "+ val)
+            numbers.push(val);
+            
+            if(numbers instanceof Array){
+                //will be true   
+            }
+        } else if (type == "string" && typeof val == "string"){
+            console.log("string added: "+ val)
+            strings.push(val);
+
+        }
+    }
+    addType(num1, "number")
+
+    function sumAll(){
+        let sumOfAll = 0;
+        for(let i = 0; i < numbers.length; i++){
+            sumOfAll += numbers[i];
+            sumOfAll = sumOfAll + numbers[i];
+        }
+        numbers.forEach(num=> sumOfAll += num )
+        numbers.forEach(num=> {
+            sumOfAll = sumOfAll + num;
+        })
+        numbers.forEach(num=> sumOfAll = sumOfAll + num )
+
+        console.log(sumOfAll)
+    }
+
+    function containsAll(str_search, str_search2, str_search3){
+        let stringContainsAll = true;
+        for(let i = 0; i < strings.length; i++){
+            if(!strings[i].includes(str_search)){
+                stringContainsAll = false;
+                break;
+            }
+            if(!strings[i].includes(str_search2)){
+                stringContainsAll = false;
+                break;
+            }
+            if(!strings[i].includes(str_search3)){
+                stringContainsAll = false;
+                break;
+            }
+        }
+        console.log(stringContainsAll)
+        return stringContainsAll;
+    }
+    
+    function containsAll2(str_search, str_search2, str_search3){
+        let stringsContainsAll = true;
+
+        strings.forEach(str=>{
+            // if(!str.includes(str_search) && !str.includes(str_search2) && !str.includes(str_search3)){
+            //     stringsContainsAll = false;
+            // }
+            if(!str.includes(str_search)){
+                stringsContainsAll = false;
+                return;
+            }
+            if(!str.includes(str_search2)){
+                stringsContainsAll = false;
+                return;
+            }
+            if(!str.includes(str_search3)){
+                stringsContainsAll = false;
+                return;
+            }
+        })
+        console.log(stringsContainsAll);
+        return stringsContainsAll;
+    }
+    containsAll("asde", "asdf", "fsa")
+
+    
+
+    document.addEventListener("DOMContentLoaded", ()=>  getLast(), getLast())
+    document.addEventListener("DOMContentLoaded", ()=> { getLast(); getLast() })
+
+    if(((1 && true && 1) || 1) == 1) { 
+
+        
+    } 
+    else if(2){
+
+    } 
+    else {
+
+    }
+
+    let c;
+    if(1) c = (123 + 2);
+    console.log(c) 
+
+
+    for(let i = 0; i< 10; i++){
+        console.log("1") 
+        if(i == 5) continue;
+    
+        console.log("2")
+    }
+    label_1: for(let i = 0; i< 10; i++){
+        console.log("1") 
+        if(i == 5) break;
+    
+        console.log("2")
+    }
+    label_1: {
+            
+        for(let i = 0; i< 10; i++){
+            console.log("1") 
+            if(i == 5) break label_1;
+        
+            console.log("2")
+        }
+
+        console.log("never reached")
+    }
+
+
+
+    </script>
+</body>
+</html>
