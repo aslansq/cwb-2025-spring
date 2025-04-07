@@ -6,7 +6,7 @@
 <body>
 
     <section>
-        <pre>Task: when text is clicked, change text</pre>
+        <pre onclick="onTextChanged()">Task: when text is clicked, change text</pre>
         <p>text that changes</p>
     </section>
 
@@ -25,7 +25,7 @@
 
     <section>
         <pre>Task: when image is clicked change the image</pre>
-        <img onclick="" src="your image path" alt="image that changes">
+        <img onclick="changeImage()" src="Run1.png" alt="image that changes">
     </section>
 
 
@@ -37,63 +37,69 @@
 
     <script>
     </script>
-    
+
+
     <script>
+        let numberOfClicksOfText = 0;
 
-        if(1 + 1 > 2){
-            console.log("1 + 1 > 2: true")
-        } else {
-            console.log("1 + 1 > 2: false")
-        }
+        let type1ListItemClickCount = 0;
+        let type2ListItemClickCount = 0;
 
-        if( 5 >= 5){
-            console.log("5 >= 5: true")
-        } else {
-            console.log("5 >= 5: false")
-        }
-        if( true == 1){
-            console.log("true == 1: true")
-        } else {
-            console.log("true == 1: false")
-        }
-        if( true === 1){
-            console.log("true === 1: true")
-        } else {
-            console.log("true === 1: false")
+        let imgCounter = 1;
+
+        function onTextChanged() {
+            const paragraph = document.querySelector('p');
+            numberOfClicksOfText++;
+            paragraph.textContent = 'Text has been changed!' + numberOfClicksOfText;
         }
 
-        if( true === 1){
-            console.log("true === 1: true")
-        } else if(1 >= true) {
-            console.log("1 >= true: true")
-        } else {
-            console.log("1 >= true AND true === 1: false")
+        type1ListItems = document.querySelectorAll('.type-1');
+        type2ListItems = document.querySelectorAll('.type-2');
+
+        function onType1ListItemClicked(event) {
+            type1ListItemClickCount++;
+            type1ListItems.forEach(item => {
+                item.innerHTML = 'List item type 1 clicked ' + type1ListItemClickCount;
+            });
         }
 
-        console.log(`"" == 0:`, "" == 0)
-        console.log(`0 == false:`, 0 == false)
-        console.log(`NaN == 0:`, NaN == 0, isNaN(0))
-
-        let var1 = false;
-        console.log(
-            "true === 1 && false == 0:",        true === 1 && false == 0, '\n',
-            "(1 && true && 1) == 1:",           (1 && true && 1) == 1, '\n',
-            "(!var1 && true && 1 == true): ",   (!var1 && getBool1() && getVal1() >= 421 && 1 == true)
-        )
-
-        function getBool1(){
-            let a = 2;
-            a *= 4;
-            return 1 + a >= 2;
-        }
-        function getVal1(){
-            return 421;
+        for (let i = 0; i < type1ListItems.length; i++) {
+            type1ListItems[i].addEventListener('click', onType1ListItemClicked);
         }
 
-        if(54312){
-            console.log("true")
+        function onType2ListItemClicked(event) {
+            type2ListItemClickCount++;
+
+            type2ListItems.forEach(item => {
+                item.innerHTML = 'List item type 2 clicked ' + type2ListItemClickCount;
+            });
+
+            type1ListItems.forEach(item => {
+                item.innerHTML = 'List item type 2 clicked ' + type2ListItemClickCount;
+            });
         }
-        console.log(421 == true)
+
+        for (let i = 0; i < type2ListItems.length; i++) {
+            type2ListItems[i].addEventListener('click', onType2ListItemClicked);
+        }
+
+        function changeImage() {
+            const image = document.querySelector('img');
+            image.src = "Run"+imgCounter+".png";
+            imgCounter++;
+            if (imgCounter == 9) {
+                imgCounter = 1;
+            }
+        }
+
+        //document.querySelector("#table") will select the <div id="table">.
+        //document.querySelector(".table") will select the <div class="table">.
+        //document.querySelector("table") will select the <table> element.
+
+        function obtainValue() {
+            const input = document.querySelector('input[type="text"]');
+            console.log(input.value);
+        }
 
 
     </script>
