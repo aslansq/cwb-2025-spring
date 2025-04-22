@@ -147,14 +147,14 @@ button:hover {
     searchExpense: (category) => {
       const filteredExpenses = []; //<- to complete: filter through expenses by category
       if (filteredExpenses.length === 0) {
-        displayMessage(/*to complete*/);
+    //    displayMessage(`"It is not in the ${category}"`);
       } else {
         let expenseList = "<ul>";
         filteredExpenses.forEach(expense => {
           expenseList += `<li>${expense.amount}€ - ${expense.category}: ${expense.description}</li>`;
         });
         expenseList += "</ul>";
-        displayMessage(/*to complete*/);
+    //    displayMessage(expenseList);
       }
     }
   };
