@@ -132,7 +132,7 @@ button:hover {
  
           financeTracker.expenses.forEach(expense => {
             
-            expenseList += `<li> ${expense.amount}, ${expense.category}, ${expense.description}</li>`
+            expenseList += `<li> ${expense.amount}, ${expense.category}, ${expense.description}</li>`;
 
             // add expenses
           });
@@ -145,17 +145,18 @@ button:hover {
     },
  
     searchExpense: (category) => {
-      const filteredExpenses = []; //<- to complete: filter through expenses by category
-      if (filteredExpenses.length === 0) {
-    //    displayMessage(`"It is not in the ${category}"`);
-      } else {
-        let expenseList = "<ul>";
-        filteredExpenses.forEach(expense => {
-          expenseList += `<li>${expense.amount}€ - ${expense.category}: ${expense.description}</li>`;
-        });
-        expenseList += "</ul>";
-    //    displayMessage(expenseList);
-      }
+      const filteredExpenses = financeTracker.expenses.filter(expense =>
+        expense.category.toLowerCase() === category.toLowerCase());
+          if (filteredExpenses.length === 0) {
+            displayMessage(`"It is not in the ${category}"`);
+          } else {
+            let expenseList = "<ul>";
+            filteredExpenses.forEach(expense => {
+              expenseList += `<li>${expense.amount}€ - ${expense.category}: ${expense.description}</li>`;
+            });
+            expenseList += "</ul>";
+            displayMessage(expenseList);
+          }
     }
   };
  
@@ -164,14 +165,13 @@ button:hover {
     document.getElementById("output").innerHTML = message;
   };
 
-  //let x = document.querySelector("#search_category");
- 
   // DOM event listeners:
   document.getElementById('add-expense').addEventListener('click', () => {
     // TODO: query DOM elements
     let attribute1 = document.querySelector("#expense").value.trim()
     let attribute2 = document.querySelector("#category").value.trim()
     let attribute3 = document.querySelector("#desc").value.trim()
+    
 
     financeTracker.addExpense(attribute1, attribute2, attribute3);
   });
@@ -181,11 +181,10 @@ button:hover {
   });
  
   document.getElementById('search-expenses').addEventListener('click', () => {
-    // ..
+    const category = document.querySelector("#search_category").value.trim();
     financeTracker.searchExpense(category);
   });
- 
- 
+
 </script>
 </body>
 </html>
